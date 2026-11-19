@@ -1,16 +1,27 @@
-# BusDiag 4.1 — Catálogo técnico inicial
+# BusDiag 4.3 — Módulo J1939
 
-Actualización de BusDiag 4.0. Conserva diagnóstico, mediciones y casos locales.
+## Instalación en GitHub desde Android
 
-## Novedades
-- Biblioteca con búsqueda por código, sistema o descripción.
-- Botón para descargar en el navegador los códigos OBD-II públicos de OBDex (no se almacena permanentemente).
-- Muestra la fuente y distingue fichas orientativas de códigos importados.
-- Si falla la conexión o cambia el formato externo, la biblioteca local sigue funcionando.
-- Limita resultados visibles a 80 para mantener fluidez en Android.
+1. Sube `busdiag-j1939-4.3.js` a la raíz del repositorio `Tuappinventor/busdiag-web` (al lado de `index.html` y `busdiag-catalogo-4.2.js`).
+2. Edita `index.html` y añade esta línea **antes de `</body>`**, sin borrar la de 4.2:
 
-## Publicación manual
-En GitHub, abre `index.html`, elige Edit (lápiz), sustituye el contenido por el del nuevo archivo y pulsa Commit changes; o usa Add file > Upload files para reemplazarlo. Reemplaza también README.md si quieres. La actualización de Cloudflare depende de cómo hayas configurado el despliegue; comprueba que aparece «4.1 · CATÁLOGO».
+   `<script src="./busdiag-j1939-4.3.js" defer></script>`
 
-## Alcance y limitaciones
-OBDex: https://github.com/foerbsnavi/OBDex (el proyecto indica CC0). No se han importado ni copiado manuales OEM. No se ha integrado MechanicDB ni J1939 todavía. La compatibilidad del formato remoto y CORS se comprueban al pulsar Cargar; pueden variar. La importación es temporal y los casos permanecen en el almacenamiento local del navegador. No introducir datos personales de clientes. Nunca interpretar un código como diagnóstico definitivo.
+3. Confirma el cambio y espera a que Cloudflare publique la actualización.
+4. En BusDiag → Biblioteca, baja hasta «Vehículos industriales · J1939».
+5. Comprueba que se cargan aproximadamente 100 averías. Busca `SPN 154 FMI 13` o `ABS`.
+
+## Qué hace
+
+- Descarga la muestra pública de `j1939_faults.csv` de MechanicDB.
+- Permite filtrar por SPN, FMI, texto y fabricante, con 15 resultados por página.
+- Muestra fabricante, controlador, código OEM, descripción y fuente documental.
+- Guarda una copia en `localStorage` para siguientes visitas; la primera carga requiere internet.
+- No modifica las 9.533 fichas OBDex, el diagnóstico, las mediciones ni los casos privados.
+
+## Fuente y licencia
+
+MechanicDB, `https://github.com/MechanicDB/MechanicDB-public`, muestra Heavy Duty `samples/heavyduty/j1939_faults.csv`.
+Datos sujetos a Open Database License (ODbL) 1.0: `https://github.com/MechanicDB/MechanicDB-public/blob/main/LICENSE`. Debe conservarse la atribución y, si se publica una base adaptada, respetarse la obligación de compartir bajo ODbL. Documentación y procedencia: `SOURCES.md` en ese repositorio.
+
+No es la base completa ni cubre todos los fabricantes. Las descripciones no son umbrales OEM ni sustituyen las instrucciones de seguridad. No se ha verificado todavía la descarga CORS desde el dominio Cloudflare del usuario.
