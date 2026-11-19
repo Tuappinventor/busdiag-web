@@ -1,22 +1,16 @@
-# BusDiag Online 4.0 — primera versión pública de pruebas
+# BusDiag 4.1 — Catálogo técnico inicial
 
-Web estática adaptable a móvil. La pantalla inicial pregunta primero por los síntomas; marca, modelo y código de avería son opcionales. Incluye diagnóstico orientativo por reglas, biblioteca de ejemplo, cálculos de mediciones y casos guardados en el navegador.
+Actualización de BusDiag 4.0. Conserva diagnóstico, mediciones y casos locales.
 
-## Publicación gratuita desde GitHub
+## Novedades
+- Biblioteca con búsqueda por código, sistema o descripción.
+- Botón para descargar en el navegador los códigos OBD-II públicos de OBDex (no se almacena permanentemente).
+- Muestra la fuente y distingue fichas orientativas de códigos importados.
+- Si falla la conexión o cambia el formato externo, la biblioteca local sigue funcionando.
+- Limita resultados visibles a 80 para mantener fluidez en Android.
 
-1. Sube `index.html` y `README.md` a la raíz de tu repositorio privado `busdiag-web`.
-2. En Cloudflare: **Workers & Pages → Create → Pages → Connect to Git**. Autoriza el repositorio privado.
-3. Selecciona `busdiag-web`. Configura **Framework preset: None**, **Build command: vacío**, **Build output directory: /** (raíz). Si la interfaz no admite `/`, usa el modo de despliegue estático correspondiente.
-4. Publica y abre la dirección `.pages.dev` que Cloudflare te asigne.
+## Publicación manual
+En GitHub, abre `index.html`, elige Edit (lápiz), sustituye el contenido por el del nuevo archivo y pulsa Commit changes; o usa Add file > Upload files para reemplazarlo. Reemplaza también README.md si quieres. La actualización de Cloudflare depende de cómo hayas configurado el despliegue; comprueba que aparece «4.1 · CATÁLOGO».
 
-## Límites y privacidad
-
-- Esta versión NO conecta todavía OBDex, MechanicDB, J1939 ni Supabase.
-- La biblioteca contiene nueve fichas orientativas; no son datos OEM certificados.
-- Los casos se guardan en `localStorage` de ese navegador, no en el repositorio ni en un servidor. Exporta copias de seguridad.
-- La web publicada será accesible a cualquiera que tenga la dirección, aunque GitHub sea privado. No subas datos personales ni información confidencial.
-- Los resultados de diagnóstico son hipótesis y listas de comprobación, nunca instrucciones de sustitución ni garantías de seguridad.
-
-## Próximas fases
-
-Autenticación, Supabase con permisos por usuario/taller, importadores licenciados, J1939/SPN-FMI y diagnósticos guiados por procedimientos verificados.
+## Alcance y limitaciones
+OBDex: https://github.com/foerbsnavi/OBDex (el proyecto indica CC0). No se han importado ni copiado manuales OEM. No se ha integrado MechanicDB ni J1939 todavía. La compatibilidad del formato remoto y CORS se comprueban al pulsar Cargar; pueden variar. La importación es temporal y los casos permanecen en el almacenamiento local del navegador. No introducir datos personales de clientes. Nunca interpretar un código como diagnóstico definitivo.
